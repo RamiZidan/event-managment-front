@@ -33,6 +33,7 @@ function PublicInvitations() {
     {
       title:'print',
       render:(record:any)=>{
+        console.log(record,'..');
         return  <>
         <Link to={`/print-badge/${record?.id}`}>
           <li className="list-inline-item">

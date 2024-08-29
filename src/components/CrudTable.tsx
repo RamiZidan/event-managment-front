@@ -142,19 +142,15 @@ function CrudTable({
                             {
                                 actions?.map((action: any) => {                            
                                     if (action?.render) {
-                                        // return <>
-                                        //     <div onClick={setRecord()}>
-
-                                        //     </div>
-                                        // </>
-                                        return action?.render(record);
+                                        console.log(_ , record);
+                                        return action?.render(_);
                                     }
                                     else {
                                         
                                         return <a onClick={() =>{ 
-                                            action?.handler(record)
-                                            setRecord(record)
-                                        } }> {action?.render(record)} </a>
+                                            action?.handler(_)
+                                            setRecord(_)
+                                        } }> {action?.render(_)} </a>
                                     }
                                 })
                             }
