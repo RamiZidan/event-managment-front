@@ -1,0 +1,32 @@
+:root{
+    --background-blue:'#5099ff';
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Open-sans';
+}
+
+
+@media print {
+    /* All your print styles go here */
+    .header-component{
+        display: none ;
+    }
+    .footer-component{
+        display: none ;
+    }
+    #print {
+      width: 100%;
+    }
+    .topnav{
+        display: none;
+    }
+    .ant-layout-header {
+        display: none ;
+    }
+    
+  }
+  
