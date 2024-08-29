@@ -23,6 +23,7 @@ const baseQuery = fetchBaseQuery({
             headers.set('authorization', `Bearer ${token}`)
             headers.set('Content-Type','application/json');
             headers.set('accept','application/json');
+            headers.set('ngrok-skip-browser-warning', "69420");
         }
         return headers
     }  
