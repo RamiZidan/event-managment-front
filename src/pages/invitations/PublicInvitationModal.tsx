@@ -40,8 +40,8 @@ function PublicInvitationModal({open , setOpen , action , record  }) {
 
   const sendInvitatoin =async (values:any)=>{
     console.log(values);
-    values.invitation_lang = (values.invitation_lang ? 1 :0 );
-    values.send_email = (values.send_email ? 'english' : 'arabic' ) ;
+    values.invitation_lang = (values.invitation_lang ? 'english' :'arabic' );
+    values.send_email = (values.send_email ? 1 : 0 ) ;
     values.send_whatsapp = (values.send_whatsapp? 1 : 0 ) ;
     values.confirmed_at = (values.confirmed_at ? new Date() : null ) ;
     console.log(values);
