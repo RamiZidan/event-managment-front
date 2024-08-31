@@ -143,6 +143,7 @@ function PublicInvitationModal({open , setOpen , action , record  }) {
                                                 <label className="form-label" htmlFor="formrow-email-input">رقم الجوال </label>
                                                 <Form.Item
                                                     name="phone_number"
+                                                    rules={[ {pattern :new RegExp(/^(0966|00966|966|\+966)([0-9]{9})$/) , message:'should be a saudi phone number'}]}
                                                 >
                                                     <input type="phone" className="form-control" />
                                                 </Form.Item>
