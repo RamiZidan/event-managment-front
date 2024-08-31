@@ -3,14 +3,27 @@ import { useForm } from 'antd/es/form/Form'
 import React from 'react'
 import { useGetSurnamesQuery } from '../../features/surnames/surnamesApiSlice';
 import { useGetGroupsQuery } from '../../features/groups/groupsApiSlice';
-import {  useCreatePublicInvitationMutation } from '../../features/invitations/invitationsApiSlice';
+import {  useCreatePublicInvitationMutation, useGetInvitationByIdQuery } from '../../features/invitations/invitationsApiSlice';
 import { showErrors } from '../../functions/helpers';
 
-function PublicInvitationModal({open , setOpen }) {
-  const form = useForm() ;
+function PublicInvitationModal({open , setOpen , action , record  }) {
   let {data:surnames } = useGetSurnamesQuery({}) ;
   let {data:groups } = useGetGroupsQuery({});
+  let {data: invitation } = useGetInvitationByIdQuery(1
+    );
+  
+  const [form] = Form.useForm();
+  if(action  == 'view'){
+    form.setFieldsValue(invitation?.data);
+    // form?.disable(); 
+
+  }
+  else{
+    form.setFieldsValue(invitation?.data);
+  }
   const [createPublicInvitation ] = useCreatePublicInvitationMutation();
+  invitation = invitation?.data ;
+
   groups = groups?.data?.map((group)=>{
     return {label: group.title , value : group.id} 
 
@@ -28,7 +41,7 @@ function PublicInvitationModal({open , setOpen }) {
   const sendInvitatoin =async (values:any)=>{
     console.log(values);
     values.invitation_lang = (values.invitation_lang ? 1 :0 );
-    values.send_email = (values.send_email ? 1 : 0 ) ;
+    values.send_email = (values.send_email ? 'english' : 'arabic' ) ;
     values.send_whatsapp = (values.send_whatsapp? 1 : 0 ) ;
     values.confirmed_at = (values.confirmed_at ? new Date() : null ) ;
     console.log(values);
@@ -57,6 +70,7 @@ function PublicInvitationModal({open , setOpen }) {
                                    <h3>معلومات المدعو</h3>
                                    <Form 
                                     onFinish={sendInvitatoin}
+                                    form={form}
                                    >
                                     <div className="row mb-1">
                                                                                                     
